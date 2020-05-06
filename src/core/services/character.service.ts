@@ -31,8 +31,12 @@ export class CharacterService {
             );
     }
 
-    public findAll(): Observable<ApiResponse<Character>> {
-        const params = this.buildAuthentication();
+    public findAll(query = {}): Observable<ApiResponse<Character>> {
+        let params = this.buildAuthentication();
+
+        Object.keys(query).map((key) => {
+            params = params.set(key, query[key]);
+        });
 
         return this.http
             .get<ApiWrapper<Character>>(`${ this.baseUri }/v1/public/characters`, { params })

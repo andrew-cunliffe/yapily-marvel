@@ -8,6 +8,7 @@ import { CharacterComponent } from './character/character.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     imports: [
         BrowserModule,
         HttpClientModule,
+        ReactiveFormsModule,
         AppRoutingModule,
     ],
     providers: [],

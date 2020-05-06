@@ -1,3 +1,9 @@
+<form [formGroup]="characterForm" (submit)="performSearch()">
+    <label for="search">Search</label>
+    <input id="search" name="search" formControlName="search">
+    <button type="submit">Go</button>
+</form>
+
 <div class="characters">
     <ul class="characters__entry" *ngFor="let character of characterList">
         <li>
