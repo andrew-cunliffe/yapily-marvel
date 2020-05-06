@@ -25,8 +25,7 @@ export class LandingComponent implements OnInit {
     ) { }
 
     public ngOnInit(): void {
-        const characterData: ApiResponse<Character> = this.route.snapshot.data.characterData;
-        this.characterData = characterData;
+        this.characterData = this.route.snapshot.data.characterData;
 
         this.characterForm = this.forms.group({
             search: [ undefined, [] ],

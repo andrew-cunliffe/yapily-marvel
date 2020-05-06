@@ -1,7 +1,5 @@
 <form [formGroup]="characterForm" (submit)="performSearch()">
-    <label for="search">Search</label>
-    <input id="search" name="search" formControlName="search">
-    <button type="submit">Go</button>
+    <app-input name="search" placeholder="Search characters..." formControlName="search"></app-input>
 </form>
 
 <div class="characters">

@@ -1,0 +1,6 @@
+<div class="app-input">
+    <label [for]="name" *ngIf="label">{{ label }}</label>
+    <div class="app-input__container" [ngClass]="{ focus: hasFocus }">
+        <input appInput type="text" [(ngModel)]="value" [id]="name" [name]="name" [placeholder]="placeholder" [disabled]="isDisabled">
+    </div>
+</div>
