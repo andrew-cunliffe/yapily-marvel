@@ -1,1 +1,11 @@
-<pre>{{ characterList | json }}</pre>
+<div class="characters">
+    <ul class="characters__entry" *ngFor="let character of characterList">
+        <li>
+            <a [routerLink]="['/', 'character', character.id]">{{ character.name }}</a>
+        </li>
+    </ul>
+</div>
+
+<pre>
+    {{ characterList | json }}
+</pre>

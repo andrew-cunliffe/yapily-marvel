@@ -3,8 +3,8 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build",
+        "start": "ng serve --port=8080 --configuration=develop",
+        "build": "ng build --configuration=production",
         "lint": "ng lint"
     },
     "private": true,

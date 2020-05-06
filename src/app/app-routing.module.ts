@@ -3,15 +3,28 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LandingComponent } from './landing/landing.component';
 
-import { CharacterResolve } from '../core/resolves';
+import { CharacterResolve, CharacterListResolve } from '../core/resolves';
+import { CharacterComponent } from './character/character.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LandingComponent,
         resolve: {
+            characterData: CharacterListResolve,
+        },
+    },
+    {
+        path: 'character/:characterId',
+        component: CharacterComponent,
+        resolve: {
             characterData: CharacterResolve,
         },
+    },
+    {
+        path: '**',
+        component: NotFoundComponent,
     },
 ];
 

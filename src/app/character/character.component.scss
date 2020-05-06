@@ -1,0 +1,32 @@
+@import '../../variables';
+
+.characters {
+    display: flex;
+    flex-direction: column;
+
+    &__entry {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2em;
+
+        .image {
+            flex: 1 1 auto;
+        }
+
+        @media all and (min-width: $desktop-viewport) {
+            flex-direction: row;
+
+            .image {
+                flex-basis: 50%;
+                max-width: 800px;
+            }
+
+            .content {
+                flex: 1 1 50%;
+            }
+        }
+    }
+
+    @media all and (min-width: $desktop-viewport) {
+    }
+}

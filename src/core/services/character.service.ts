@@ -21,18 +21,25 @@ export class CharacterService {
         private hashService: HashService,
     ) { }
 
+    public findOne(characterId: string): Observable<Character> {
+        const params = this.buildAuthentication();
+
+        return this.http.get<ApiWrapper<Character>>(`${ this.baseUri }/v1/public/characters/${characterId}`, { params })
+            .pipe(
+                map((response: ApiWrapper<Character>) => response.data.results[0]),
+                map((character: Character) => ({ ...character, image: `${ character.thumbnail.path }.${ character.thumbnail.extension }` }))
+            );
+    }
+
     public findAll(): Observable<ApiResponse<Character>> {
         const params = this.buildAuthentication();
-        console.log(params.toString());
+
         return this.http
             .get<ApiWrapper<Character>>(`${ this.baseUri }/v1/public/characters`, { params })
             .pipe(
                 map((response: ApiWrapper<Character>) => {
                     const data = response.data;
-                    data.results = data.results.map((item) => {
-                        item.image = `${ item.thumbnail.path }.${ item.thumbnail.extension }`;
-                        return item;
-                    });
+                    data.results = data.results.map((character: Character) => ({ ...character, image: `${ character.thumbnail.path }.${ character.thumbnail.extension }` }));
                     return data;
                 }),
             );

@@ -1,0 +1,14 @@
+@import '../../variables';
+
+.characters {
+    display: flex;
+    flex-direction: column;
+
+    &__entry {
+        @media all and (min-width: $desktop-viewport) {
+        }
+    }
+
+    @media all and (min-width: $desktop-viewport) {
+    }
+}
