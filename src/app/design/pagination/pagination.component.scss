@@ -1,0 +1,27 @@
+$background-color: #78D8F0;
+
+button {
+    box-sizing: border-box;
+    padding: 0.5em 1em 0.4em;
+    background-color: $background-color;
+
+    &:hover, &:active {
+        background-color: darken($background-color, 20%);
+    }
+
+    &:first-of-type {
+        border-top-left-radius: 25%;
+        border-bottom-left-radius: 25%;
+    }
+
+    &:last-of-type {
+        border-top-right-radius: 25%;
+        border-bottom-right-radius: 25%;
+        border-right: 0;
+    }
+
+    &.selected {
+        background-color: lighten($background-color, 20%);
+    }
+
+}

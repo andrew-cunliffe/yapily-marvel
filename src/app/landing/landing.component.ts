@@ -7,6 +7,8 @@ import { debounceTime } from 'rxjs/operators';
 import { ApiResponse, Character } from '../../core/models';
 import { CharacterService } from '../../core/services';
 
+import { PaginationEvent } from '../design/pagination/pagination-event';
+
 @Component({
     templateUrl: './landing.component.html',
     styleUrls: [ './landing.component.scss' ],
@@ -14,7 +16,7 @@ import { CharacterService } from '../../core/services';
 export class LandingComponent implements OnInit {
 
     public characterForm: FormGroup;
-    public characterList: Array<Character>;
+    public characterData: ApiResponse<Character>;
 
     constructor(
         private route: ActivatedRoute,
@@ -24,7 +26,7 @@ export class LandingComponent implements OnInit {
 
     public ngOnInit(): void {
         const characterData: ApiResponse<Character> = this.route.snapshot.data.characterData;
-        this.characterList = characterData.results;
+        this.characterData = characterData;
 
         this.characterForm = this.forms.group({
             search: [ undefined, [] ],
@@ -38,15 +40,23 @@ export class LandingComponent implements OnInit {
             .subscribe(() => this.performSearch());
     }
 
-    public performSearch(): void {
+    public changePage(event: PaginationEvent): void {
+        this.performSearch(--event.selectedPage * event.limit);
+    }
+
+    public performSearch(offset = 0): void {
         const form = this.characterForm.getRawValue();
-        const query: { [ key: string ]: string } = {};
+        const query: { [ key: string ]: any } = {};
+
+        if (offset) {
+            query.offset = offset;
+        }
 
         if (form.search) {
             query.nameStartsWith = form.search;
         }
 
         this.characterService.findAll(query)
-            .subscribe((characterData) => this.characterList = characterData.results);
+            .subscribe((characterData) => this.characterData = characterData);
     }
 }

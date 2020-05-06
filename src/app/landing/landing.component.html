@@ -5,13 +5,15 @@
 </form>
 
 <div class="characters">
-    <ul class="characters__entry" *ngFor="let character of characterList">
+    <ul class="characters__entry" *ngFor="let character of characterData.results">
         <li>
             <a [routerLink]="['/', 'character', character.id]">{{ character.name }}</a>
         </li>
     </ul>
 </div>
 
+<app-pagination [records]="characterData.total" [skip]="characterData.offset" [limit]="characterData.limit" (pageChange)="changePage($event)"></app-pagination>
+
 <pre>
-    {{ characterList | json }}
+    {{ characterData | json }}
 </pre>
