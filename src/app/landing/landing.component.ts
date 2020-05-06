@@ -8,6 +8,7 @@ import { ApiResponse, Character } from '../../core/models';
 import { CharacterService } from '../../core/services';
 
 import { PaginationEvent } from '../design/pagination/pagination-event';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
     templateUrl: './landing.component.html',
@@ -21,6 +22,7 @@ export class LandingComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private forms: FormBuilder,
+        private sanitizer: DomSanitizer,
         private characterService: CharacterService,
     ) { }
 
@@ -37,6 +39,10 @@ export class LandingComponent implements OnInit {
                 debounceTime(500),
             )
             .subscribe(() => this.performSearch());
+    }
+
+    public getSafe(url: string): SafeStyle {
+        return this.sanitizer.bypassSecurityTrustStyle(`url(${url})`);
     }
 
     public changePage(event: PaginationEvent): void {

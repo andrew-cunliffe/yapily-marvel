@@ -1,6 +1,11 @@
-interface Item {
-    name: string;
-    resourceURI: string;
+import { SafeStyle, SafeUrl } from '@angular/platform-browser';
+
+export interface CharacterItems {
+    available: number;
+    items: Array<{
+        name: string;
+        resourceURI: string;
+    }>;
 }
 
 export interface Character {
@@ -12,7 +17,7 @@ export interface Character {
         extension: string;
     };
     image?: string;
-    stories: Array<Item>;
-    events: Array<Item>;
-    series: Array<Item>;
+    stories: CharacterItems;
+    events: CharacterItems;
+    series: CharacterItems;
 }

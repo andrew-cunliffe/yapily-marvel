@@ -1,32 +1,25 @@
 @import '../../variables';
 
-.characters {
+.character {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1em;
 
-    &__entry {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 2em;
-
-        .image {
-            flex: 1 1 auto;
-        }
+    &__image {
+        width: 100%;
+        max-width: 100%;
 
         @media all and (min-width: $desktop-viewport) {
-            flex-direction: row;
-
-            .image {
-                flex-basis: 50%;
-                max-width: 800px;
-            }
-
-            .content {
-                flex: 1 1 50%;
-            }
+            max-width: 800px;
+            margin-right: 1em;
         }
     }
 
+    &__highlights {
+        flex: 1 0 60%;
+    }
+
     @media all and (min-width: $desktop-viewport) {
+        flex-direction: row;
     }
 }

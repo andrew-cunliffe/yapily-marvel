@@ -1,0 +1,9 @@
+<h2>{{ label }} ({{ data.available }})</h2>
+
+<ng-container *ngIf="data.items.length; else noStories">
+    <ul>
+        <li *ngFor="let item of data.items">{{ item.name }}</li>
+    </ul>
+</ng-container>
+
+<ng-template #noStories><em>No {{ label }} for {{ name }}</em></ng-template>

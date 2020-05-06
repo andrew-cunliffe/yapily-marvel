@@ -2,16 +2,37 @@
     <app-input name="search" placeholder="Search characters..." formControlName="search"></app-input>
 </form>
 
-<div class="characters">
-    <ul class="characters__entry" *ngFor="let character of characterData.results">
-        <li>
-            <a [routerLink]="['/', 'character', character.id]">{{ character.name }}</a>
-        </li>
-    </ul>
-</div>
+<ng-container *ngIf="characterData.count; else noData">
+    <div class="pagination">
+        <app-pagination [records]="characterData.total" [skip]="characterData.offset" [limit]="characterData.limit" (pageChange)="changePage($event)"></app-pagination>
+    </div>
 
-<app-pagination [records]="characterData.total" [skip]="characterData.offset" [limit]="characterData.limit" (pageChange)="changePage($event)"></app-pagination>
+    <div class="characters">
+        <ul *ngFor="let character of characterData.results">
+            <li [routerLink]="['/', 'character', character.id]">
+                <div class="thumb" [style.backgroundImage]="getSafe(character.image)"></div>
+                <div class="info">
+                    <h3>{{ character.name }}</h3>
+                    <div class="pills">
+                        <div>
+                            <h4>Stories</h4>
+                            <div>{{ character.stories.available }}</div>
+                        </div>
+                        <div>
+                            <h4>Series</h4>
+                            <div>{{ character.series.available }}</div>
+                        </div>
+                        <div>
+                            <h4>Events</h4>
+                            <div>{{ character.events.available }}</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ng-container>
 
-<pre>
-    {{ characterData | json }}
-</pre>
+<ng-template #noData>
+    <div class="no-data">No results found for search <strong>{{ characterForm.get('search').value }}</strong>, try again</div>
+</ng-template>

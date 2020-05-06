@@ -1,3 +1,16 @@
-<pre>
-    {{ characterData | json }}
-</pre>
+<div class="character">
+    <div class="character__image">
+        <img [src]="characterData.image">
+    </div>
+    <div class="character__highlights">
+        <h2>{{ characterData.name }}</h2>
+        <div *ngIf="characterData.description; else noDesc">{{ characterData.description }}</div>
+        <ng-template #noDesc><em>No description available</em></ng-template>
+    </div>
+</div>
+
+<app-items label="Stories" [name]="characterData.name" [data]="characterData.stories"></app-items>
+
+<app-items label="Series" [name]="characterData.name" [data]="characterData.series"></app-items>
+
+<app-items label="Events" [name]="characterData.name" [data]="characterData.events"></app-items>

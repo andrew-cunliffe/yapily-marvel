@@ -1,3 +1,13 @@
-<div class="wrapper">
-    <router-outlet></router-outlet>
+<div class="layout">
+    <nav>
+        <a [routerLink]="['/']"><img src="/assets/marvel-logo.png"></a>
+    </nav>
+
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+
+    <footer>
+        <div>Data provided by Marvel. &copy; 2020 MARVEL</div>
+    </footer>
 </div>
