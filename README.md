@@ -1,6 +1,6 @@
 # Yapily Marvel Test
 
-## Pre requisites
+### Pre requisites
 
 - Node JS (on OS X can use brew with `brew install node@12`)
 - An account on [Marvel](https://developer.marvel.com) with API keys created
